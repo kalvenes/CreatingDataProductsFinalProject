@@ -1,0 +1,13 @@
+name: CreatingDataProductsFinalProject
+title: CreatingDataProductsFinalProject
+username:
+account: kalvenes
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 280776
+bundleId: 1222715
+url: https://kalvenes.shinyapps.io/CreatingDataProductsFinalProject/
+when: 1518615021.05472
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: help.html

@@ -1,0 +1,52 @@
+---
+title: "Creating Data Products Final Project: Pitch"
+author: "Joakim Kalvenes"
+date: "February 14, 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Regression model with user-controlled regressors {.smaller}
+
+We have created a [shiny app](https://kalvenes.shinyapps.io/CreatingDataProductsFinalProject/)
+that allows users to select which independent variables to include in their regression model
+for fuel efficiency (MPG) as a function of car attributes. The data are sourced from the
+Motor Trend data set that is included in the standard R distribution. A short description of
+the data can be found at the
+[ETH Zurich website](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).
+
+Our app has the following features:
+
+- User selection of regressors using check boxes
+- Baseline comparison against our best model (ANOVA)
+- Plot of residuals of user model and baseline model
+- Display of user model regression coefficients, residuals, and p-values
+
+## Baseline model {.smaller}
+
+```{r}
+data("mtcars")
+baseFit <- lm(mpg~factor(am)+wt+qsec,data=mtcars)
+summary(baseFit)
+```
+
+## Residual plot for baseline model  {.smaller}
+
+```{r}
+plot(baseFit, which=c(1:1), title("Residual Plot of Base Model"))
+```
+
+## Analysis of variance (ANOVA) between baseline and all-in models {.smaller}
+
+The ANOVA results allow the user to evaluate the performance of the custom model
+relative to the baseline model. In this example, we have created a custom model
+that includes all of the independent variables in the data set. The baseline
+model is clearly better than the all-in model.
+
+```{r}
+allInFit <- lm(mpg~cyl+disp+hp+drat+wt+qsec+factor(vs)+factor(am)+gear+carb,data=mtcars)
+anova(baseFit,allInFit)
+```
